@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan dom | Bermain Dengan Warna</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 100px;
+      }
+
+      button {
+        align-items: center;
+        padding: 5px;
+        width: 150px;
+        margin-left: 43%;
+      }
+
+      .ganti {
+        background-color: aqua;
+      }
+
+      .merah {
+        display: flex;
+        padding: 5px;
+      }
+
+      h3 {
+        margin-right: 10px;
+      }
+
+      .hijau {
+        display: flex;
+        padding: 5px;
+      }
+
+      .biru {
+        display: flex;
+        padding: 5px;
+      }
+
+      .slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #btn {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="h1">Bermain Dengan Warna</h1>
+    <button id="btn" type="button">Ganti</button>
+
+    <br /><br />
+    <div class="slide">
+      <div class="merah">
+        <h3>Merah</h3>
+        <input type="range" name="red" id="red" min="0" max="255" />
+      </div>
+      <div class="hijau">
+        <h3>Hijau</h3>
+        <input type="range" name="hijau" id="hijau" min="0" max="255" />
+      </div>
+      <div class="biru">
+        <h3>Biru</h3>
+        <input type="range" name="biru" id="biru" min="0" max="255" />
+      </div>
+    </div>
+
+    <script>
+      const body = document.body;
+      const btn = document.getElementById("btn");
+
+      btn.onclick = function () {
+        document.body.classList.toggle("ganti");
+      };
+      const btn2 = document.createElement("button");
+      const textBtn2 = document.createTextNode("Acak warna");
+
+      btn2.appendChild(textBtn2);
+      btn2.setAttribute("type", "button");
+      btn.after(btn2);
+
+      btn2.addEventListener("click", function () {
+        const mer = Math.round(Math.random() * 255) + 1;
+        const hij = Math.round(Math.random() * 255) + 1;
+        const bir = Math.round(Math.random() * 255) + 1;
+
+        body.style.backgroundColor =
+          "rgb(" + mer + ", " + hij + ", " + bir + ")";
+      });
+
+      const red = document.querySelector("input[name=red]");
+      const hijau = document.querySelector("input[name=hijau]");
+      const biru = document.querySelector("input[name=biru]");
+
+      red.addEventListener("input", function () {
+        const r = red.value;
+        const g = hijau.value;
+        const b = biru.value;
+        body.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
+      });
+
+      hijau.addEventListener("input", function () {
+        const r = red.value;
+        const g = hijau.value;
+        const b = biru.value;
+        body.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
+      });
+      biru.addEventListener("input", function () {
+        const r = red.value;
+        const g = hijau.value;
+        const b = biru.value;
+        body.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
+      });
+
+      body.addEventListener("mousemove", function (event) {
+        const x = Math.round((event.clientX / window.innerWidth) * 255);
+        const y = Math.round((event.clientY / window.innerHeight) * 255);
+
+        body.style.backgroundColor = "rgb(" + x + ", " + y + ", 100)";
+      });
+    </script>
+  </body>
+</html>
